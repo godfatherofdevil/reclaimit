@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	python3 -m venv debian/reclaimit-venv
+	debian/reclaimit-venv/bin/python -m pip wheel --disable-pip-version-check --no-cache-dir --wheel-dir debian/wheels .
+	debian/reclaimit-venv/bin/python -m pip install --disable-pip-version-check --no-cache-dir --no-index --find-links debian/wheels reclaimit
+
+override_dh_auto_install:
+	mkdir -p debian/reclaimit/opt/reclaimit
+	cp -a debian/reclaimit-venv debian/reclaimit/opt/reclaimit/venv
+	sed -i '1s|^#!.*|#!/opt/reclaimit/venv/bin/python|' debian/reclaimit/opt/reclaimit/venv/bin/reclaimit
+	mkdir -p debian/reclaimit/usr/bin
+	install -m 0755 packaging/scripts/reclaimit-launcher debian/reclaimit/usr/bin/reclaimit
+
+override_dh_auto_clean:
+	rm -rf debian/reclaimit-venv debian/wheels src/reclaimit.egg-info

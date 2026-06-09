@@ -1,0 +1,14 @@
+Source: reclaimit
+Section: utils
+Priority: optional
+Maintainer: Reclaimit contributors <maintainers@example.invalid>
+Build-Depends: debhelper-compat (= 13), python3 (>= 3.12), python3-venv, python3-pip, python3-wheel
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: reclaimit
+Architecture: any
+Depends: ${misc:Depends}, python3 (>= 3.12), libimobiledevice6 | libimobiledevice, usbmuxd
+Description: TUI client for bidirectional iOS media sync
+ Reclaimit discovers, pairs, browses, plans, and transfers iOS media on
+ Linux and Unix-like systems using libimobiledevice-compatible services.
