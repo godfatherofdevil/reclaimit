@@ -37,5 +37,4 @@ Reclaimit does not bundle `libimobiledevice` or `usbmuxd`. Linux packages declar
 
 Initial package targets are native `.deb` and `.rpm` artifacts. Packages install a Reclaimit-owned virtualenv under `/opt/reclaimit/venv` and expose `/usr/bin/reclaimit` as a launcher.
 
-See [docs/packaging.md](/home/akumar/playground/oss/reclaimit/docs/packaging.md).
-
+See [docs/packaging.md](docs/packaging.md).
